@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PepitaxMods</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ff00;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      z-index: 1;
+      width: 700px;
+      max-width: 90%;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 26px;
+      color: #0f0;
+      text-align: center;
+    }
+
+    .mod {
+      margin-bottom: 15px;
+      border-bottom: 1px dashed #0f0;
+      padding-bottom: 10px;
+    }
+
+    .mod-title {
+      font-weight: bold;
+      color: #00ff00;
+    }
+
+    .mod-desc {
+      font-size: 14px;
+      color: #66ff66;
+    }
+
+    .mod-link a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+
+    .mod-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+
+  <div class="terminal">
+    <h1>✦ Pepitax Modz ✦</h1>
+
+    <div class="mod">
+      <div class="mod-title">🎮 Pepitax RTM Tool Bo2</div>
+      <div class="mod-desc">This RTM tool is created By XlesterX</div>
+      <div class="mod-link">Dowload: <a href="#">http://bit.ly/3IFQPnq</a></div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-title">🔥 Multi-Cod SPRX</div>
+      <div class="mod-desc">created By OusamaBenladenBoumBoum </div>
+      <div class="mod-link">Dowload: <a href="#">http://bit.ly/4m45KX0</a></div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-title">🚗 Modloader GTAV</div>
+      <div class="mod-desc">This Modloader Is Created By XlesterX & unknownghostmodz</div>
+      <div class="mod-link">Dowload: <a href="#">https://bit.ly/44IocgJ</a></div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-title">💣 Coming Soon</div>
+      <div class="mod-desc">Coming soon</div>
+      <div class="mod-link">Dowload: <a href="#">N/A</a></div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
